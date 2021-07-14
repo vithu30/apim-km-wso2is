@@ -112,7 +112,6 @@ public class RoleBasedScopesIssuer extends AbstractScopesIssuer implements Scope
     private IdentityProvider identityProvider = null;
     // set role based scopes issuer as the default
     private static final String ISSUER_PREFIX = "default";
-    OAuthServerConfiguration oAuthServerConfiguration = OAuthServerConfiguration.getInstance();
 
     @Override
     public boolean validateScope(OAuthAuthzReqMessageContext oAuthAuthzReqMessageContext) throws
@@ -732,6 +731,7 @@ public class RoleBasedScopesIssuer extends AbstractScopesIssuer implements Scope
     private String getRoleClaimURI(String tenantDomain, List<String> requestedScopes, String clientId) {
 
         if (requestedScopes != null && requestedScopes.contains(OPENID)) {
+            System.out.println("+++++++++++++++ " + tenantDomain);
             return getOIDCMappedLocalClaimURI(tenantDomain);
         } else {
             return getSPMappedLocalRoleClaimURI(clientId, tenantDomain);
